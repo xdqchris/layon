@@ -1,0 +1,24 @@
+body {
+
+    background-color: rgb(24, 24, 22);
+			font-family: 'Exo 2', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-weight: 400;
+			color: black;
+}
+
+
+img {
+    
+
+    width: 1000px;
+    height: 600px;
+
+    border: 5px solid blueviolet;
+}
+
+
+
+.center {
+
+    text-align: center
+}

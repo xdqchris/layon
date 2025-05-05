@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Arruda Rodrigues | Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Variáveis de Design */
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a52d1;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #128C7E;
+            --admin: #6c757d;
+            --admin-dark: #5a6268;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --dark-text: #2b2d42;
+            --gray-text: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset e Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Páginas (todas hidden por padrão) */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Card Principal */
+        .profile-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            max-width: 900px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            padding: 2.5rem;
+        }
+
+        /* Página de Autenticação */
+        .auth-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+
+        .auth-title {
+            text-align: center;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: var(--dark-text);
+        }
+
+        .form-group input {
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--gray-text);
+        }
+
+        .auth-toggle a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Seção de Perfil */
+        .profile-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .profile-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--light-bg);
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .profile-img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Seção de Informações */
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .profile-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .profile-subtitle {
+            color: var(--gray-text);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        /* Botões */
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.75rem;
+            border-radius: 50px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: var(--white);
+        }
+
+        .btn-whatsapp:hover {
+            background: var(--whatsapp-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-admin {
+            background: var(--admin);
+            color: var(--white);
+        }
+
+        .btn-admin:hover {
+            background: var(--admin-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Redes Sociais */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .social-icon img {
+            width: 55%;
+            height: 55%;
+        }
+
+        /* Página de Portfólio */
+        .portfolio-section {
+            margin-top: 2rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 0.5rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Página de Admin */
+        .admin-container {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1200px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .admin-title {
+            color: var(--admin-dark);
+            font-size: 1.8rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th,
+        td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: var(--light-bg);
+            color: var(--admin-dark);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Rodapé */
+        footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 1.5rem 0;
+            color: var(--gray-text);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .profile-card {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+
+            .profile-section {
+                margin-bottom: 1.5rem;
+            }
+
+            .btn-group {
+                justify-content: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Página Inicial -->
+        <div id="home-page" class="page active">
+            <div class="profile-card">
+                <div class="profile-section">
+                    <img src="./img/christian2.jpg" alt="Christian Rodrigues" class="profile-img">
+
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/christian-rodrigues-8a470991" class="social-icon"
+                            aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/linkedin.png" alt="LinkedIn">
+                        </a>
+                        <a href="https://www.instagram.com/xdqchris__/?utm_source=ig_web_button_share_sheet"
+                            class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://facebook.com/christian.arruda.14" class="social-icon" aria-label="Facebook"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="./img/facebook.png" alt="Facebook">
+                        </a>
+                    </div>
+
+                    <button id="admin-login-btn" class="btn btn-admin" style="width: 100%; margin-top: 1rem;">STAFF</button>
+                </div>
+
+                <div class="info-section">
+                    <h1 class="profile-title">Christian Arruda Rodrigues</h1>
+                    <p class="profile-subtitle">Desenvolvedor Full Stack | Data analytics</p>
+                    <p class="profile-subtitle">Perfil profissional</p>
+
+                    <div class="btn-group">
+                        <button id="view-portfolio" class="btn btn-primary">Ver Portfólio</button>
+                        <a href="https://wa.me/55997058853?text=Olá%20Christian,%20vim%20pelo%20seu%20portfólio"
+                            class="btn btn-whatsapp">WhatsApp</a>
+                    </div>
+
+                    <p class="profile-subtitle">Especialista em criar soluções digitais que combinam design elegante com
+                        funcionalidade robusta.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de Autenticação -->
+        <div id="auth-page" class="page">
+            <div class="auth-card">
+                <!-- Formulário de Cadastro -->
+                <form id="register-form" class="auth-form">
+                    <h2 class="auth-title">Cadastre-se</h2>
+                    <div class="form-group">
+                        <label for="register-email">E-mail</label>
+                        <input type="email" id="register-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-company">Empresa</label>
+                        <input type="text" id="register-company" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Senha</label>
+                        <input type="password" id="register-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Cadastrar</button>
+                    <p class="auth-toggle">Já tem conta? <a href="#" id="show-login">Faça login</a></p>
+                </form>
+
+                <!-- Formulário de Login -->
+                <form id="login-form" class="auth-form" style="display: none;">
+                    <h2 class="auth-title">Login</h2>
+                    <div class="form-group">
+                        <label for="login-email">E-mail</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Senha</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                    <p class="auth-toggle">Não tem conta? <a href="#" id="show-register">Cadastre-se</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Página do Portfólio (após login) -->
+        <div id="portfolio-page" class="page">
+            <div class="profile-card">
+                <div class="profile-section">
+                    <img src="./img/christian2.jpg" alt="Christian Rodrigues" class="profile-img">
+
+                    <div class="social-links">
+                        <a href="https://linkedin.com/in/christian-rodrigues-8a470991" class="social-icon"
+                            aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/linkedin.png" alt="LinkedIn">
+                        </a>
+                        <a href="https://www.instagram.com/xdqchris__/?utm_source=ig_web_button_share_sheet"
+                            class="social-icon" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                            <img src="./img/instagram.png" alt="Instagram">
+                        </a>
+                        <a href="https://facebook.com/christian.arruda.14" class="social-icon" aria-label="Facebook"
+                            target="_blank" rel="noopener noreferrer">
+                            <img src="./img/facebook.png" alt="Facebook">
+                        </a>
+                    </div>
+
+                    <button id="logout-btn" class="btn btn-primary" style="width: 100%;">Sair</button>
+                </div>
+
+                <div class="info-section">
+                    <h1 class="profile-title">Christian Arruda Rodrigues</h1>
+                    <p class="profile-subtitle" id="user-email-display"></p>
+                    <p class="profile-subtitle" id="user-company-display"></p>
+
+                    <div class="portfolio-section">
+                        <h3 class="portfolio-title">Sobre Mim</h3>
+                        <p>Profissional criativo com experiência em desenvolvimento web e design de interfaces.
+                            Apaixonado por criar soluções inovadoras que combinam funcionalidade e estética.</p>
+                    </div>
+
+                    <div class="portfolio-section">
+                        <h3 class="portfolio-title">Projetos Recentes</h3>
+                        <div class="project-grid">
+                            <div class="project-card">
+                                <h4>Sistema de Gestão</h4>
+                                <p>Plataforma completa para gestão de negócios com dashboard interativo e relatórios em
+                                    tempo real.</p>
+                                <a href="#" class="project-link">Ver Detalhes →</a>
+                            </div>
+                            <div class="project-card">
+                                <h4>E-commerce</h4>
+                                <p>Loja virtual com carrinho de compras, integração com pagamentos e sistema de
+                                    recomendação.</p>
+                                <a href="#" class="project-link">Ver Detalhes →</a>
+                            </div>
+                            <div class="project-card">
+                                <h4>Aplicativo Mobile</h4>
+                                <p>Aplicativo de produtividade com sincronização em nuvem e notificações inteligentes.
+                                </p>
+                                <a href="#" class="project-link">Ver Detalhes →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de Administrador -->
+        <div id="admin-page" class="page">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h2 class="admin-title">Painel de Administração</h2>
+                    <button id="admin-logout-btn" class="btn btn-admin">Sair</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="users-table">
+                        <thead>
+                            <tr>
+                                <th>E-mail</th>
+                                <th>Empresa</th>
+                                <th>Data de Cadastro</th>
+                                <th>Nº de Logins</th>
+                                <th>Último Login</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Dados dos usuários serão inseridos aqui via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Christian Arruda Rodrigues. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // Elementos da interface
+        const pages = {
+            home: document.getElementById('home-page'),
+            auth: document.getElementById('auth-page'),
+            portfolio: document.getElementById('portfolio-page'),
+            admin: document.getElementById('admin-page')
+        };
+
+        const forms = {
+            register: document.getElementById('register-form'),
+            login: document.getElementById('login-form')
+        };
+
+        const navLinks = {
+            showLogin: document.getElementById('show-login'),
+            showRegister: document.getElementById('show-register'),
+            viewPortfolio: document.getElementById('view-portfolio'),
+            logoutBtn: document.getElementById('logout-btn'),
+            adminLoginBtn: document.getElementById('admin-login-btn'),
+            adminLogoutBtn: document.getElementById('admin-logout-btn')
+        };
+
+        // Elementos de exibição do usuário
+        const userDisplay = {
+            email: document.getElementById('user-email-display'),
+            company: document.getElementById('user-company-display')
+        };
+
+        // Tabela de usuários
+        const usersTable = document.getElementById('users-table-body');
+
+        // Credenciais do admin (em produção, usar sistema seguro)
+        const ADMIN_CREDENTIALS = {
+            email: "admin@portfolio.com",
+            password: "admin123"
+        };
+
+        // Banco de dados simulado
+        let usersDatabase = JSON.parse(localStorage.getItem('portfolioUsers')) || [];
+        let currentUser = null;
+
+        // Mostrar página específica
+        function showPage(pageId) {
+            Object.values(pages).forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+
+        // Alternar entre formulários de login/cadastro
+        function showAuthForm(formId) {
+            if (formId === 'login-form') {
+                forms.register.style.display = 'none';
+                forms.login.style.display = 'block';
+            } else {
+                forms.login.style.display = 'none';
+                forms.register.style.display = 'block';
+            }
+        }
+
+        // Cadastrar novo usuário
+        forms.register.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('register-email').value.trim();
+            const company = document.getElementById('register-company').value.trim();
+            const password = document.getElementById('register-password').value.trim();
+
+            if (!email || !company || !password) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            if (usersDatabase.some(user => user.email === email)) {
+                alert('Este e-mail já está cadastrado.');
+                return;
+            }
+
+            // Adicionar novo usuário com dados adicionais
+            const newUser = {
+                email,
+                company,
+                password,
+                createdAt: new Date().toISOString(),
+                loginCount: 0,
+                lastLogin: null
+            };
+
+            usersDatabase.push(newUser);
+            localStorage.setItem('portfolioUsers', JSON.stringify(usersDatabase));
+
+            alert('Cadastro realizado com sucesso! Faça login para continuar.');
+            showAuthForm('login-form');
+            forms.register.reset();
+        });
+
+        // Processar login
+        forms.login.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+
+            // Verificar se é admin
+            if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+                showPage('admin-page');
+                updateUsersTable();
+                forms.login.reset();
+                return;
+            }
+
+            // Verificar usuário normal
+            const userIndex = usersDatabase.findIndex(user => user.email === email && user.password === password);
+
+            if (userIndex !== -1) {
+                // Atualizar dados de login
+                usersDatabase[userIndex].loginCount = (usersDatabase[userIndex].loginCount || 0) + 1;
+                usersDatabase[userIndex].lastLogin = new Date().toISOString();
+                localStorage.setItem('portfolioUsers', JSON.stringify(usersDatabase));
+
+                currentUser = usersDatabase[userIndex];
+                userDisplay.email.textContent = currentUser.email;
+                userDisplay.company.textContent = `Empresa: ${currentUser.company}`;
+                showPage('portfolio-page');
+                forms.login.reset();
+            } else {
+                alert('E-mail ou senha incorretos.');
+            }
+        });
+
+        // Atualizar tabela de usuários
+        function updateUsersTable() {
+            usersTable.innerHTML = '';
+
+            usersDatabase.forEach(user => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${user.email}</td>
+                    <td>${user.company}</td>
+                    <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+                    <td>${user.loginCount || 0}</td>
+                    <td>${user.lastLogin ? new Date(user.lastLogin).toLocaleString() : 'Nunca'}</td>
+                `;
+
+                usersTable.appendChild(row);
+            });
+        }
+
+        // Event listeners
+        navLinks.viewPortfolio.addEventListener('click', () => {
+            showPage('auth-page');
+            showAuthForm('login-form');
+        });
+
+        navLinks.adminLoginBtn.addEventListener('click', () => {
+            showPage('auth-page');
+            showAuthForm('login-form');
+        });
+
+        navLinks.showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAuthForm('login-form');
+        });
+
+        navLinks.showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            showAuthForm('register-form');
+        });
+
+        navLinks.logoutBtn.addEventListener('click', () => {
+            currentUser = null;
+            showPage('home-page');
+        });
+
+        navLinks.adminLogoutBtn.addEventListener('click', () => {
+            showPage('home-page');
+        });
+
+        // Atualizar ano no rodapé
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mostrar página inicial por padrão
+        showPage('home-page');
+    </script>
+</body>
+
+</html>
